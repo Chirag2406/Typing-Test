@@ -1,5 +1,5 @@
 import { resetTest } from "helpers/resetTest";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     setTime,
@@ -15,11 +15,7 @@ export interface Options {
     type: string[];
 }
 
-interface AnimationProps {
-    top: number;
-    left: number;
-    theme: string;
-}
+
 
 export const options: any = {
     time: [30, 60, 300],
@@ -30,8 +26,6 @@ export default function Header() {
         preferences: { timeLimit, theme, type },
         time: { timerId },
     } = useSelector((state: State) => state);
-    const [animationProps, setAnimationProps] =
-        useState<AnimationProps | null>();
     const dispatch = useDispatch();
 
     useEffect(() => { 
@@ -101,7 +95,7 @@ export default function Header() {
                 Typing-Test
             </a>
             <div className="buttons">
-                {Object.entries(options).map(([option, choices]:any) => (
+                {Object.entries(options).map(([option, choices]:any[]) => (
                     <div key={option} className={option}>
                         {option}:
                         {choices.map((choice: string) => (
